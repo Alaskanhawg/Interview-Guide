@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flynn Pizza Hut | Interview Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --navy: #111111;
+    --navy-light: #222222;
+    --sky: #009BDE;
+    --sky-light: #e8f6fd;
+    --gold: #F5A623;
+    --white: #ffffff;
+    --off-white: #F7F8FA;
+    --gray: #6B7280;
+    --gray-light: #E5E7EB;
+    --green: #16A34A;
+    --green-light: #DCFCE7;
+    --yellow-light: #FEF9C3;
+    --red-light: #FEE2E2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--off-white);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%;
+    height: 100%;
+    background: var(--red);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .header-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+  }
+  .logo-area {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-top {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--sky);
+    text-transform: uppercase;
+  }
+  .logo-main {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .logo-main span { color: var(--gold); }
+  .header-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: 1px;
+    text-align: right;
+    opacity: 0.95;
+  }
+  .header-title small {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+
+  /* ── DASHBOARD ── */
+  #dashboard {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+  .dash-welcome {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  .dash-welcome h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .dash-welcome h1 span { color: var(--red); }
+  .dash-welcome p {
+    margin-top: 10px;
+    color: var(--gray);
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .info-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .info-field input {
+    width: 100%;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: var(--navy);
+    background: white;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .info-field input:focus { border-color: var(--sky); }
+
+  .position-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .position-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .pos-card {
+    background: white;
+    border: 3px solid var(--gray-light);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pos-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gray-light);
+    transition: background 0.25s;
+  }
+  .pos-card:hover { border-color: var(--sky); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,155,222,0.15); }
+  .pos-card:hover::before { background: var(--sky); }
+  .pos-card.selected { border-color: var(--red); box-shadow: 0 8px 30px rgba(200,16,46,0.2); }
+  .pos-card.selected::before { background: var(--red); }
+
+  .pos-icon { font-size: 36px; margin-bottom: 10px; }
+  .pos-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .pos-desc {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  .pos-badge {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--gray-light);
+    color: var(--gray);
+  }
+  .pos-card.selected .pos-badge { background: var(--red); color: white; }
+
+  .start-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .start-btn:hover { background: #a80d24; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,16,46,0.3); }
+  .start-btn:disabled { background: var(--gray-light); color: var(--gray); cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* ── INTERVIEW VIEW ── */
+  #interview { display: none; max-width: 900px; margin: 0 auto; padding: 30px 20px 60px; }
+
+  .interview-header {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 30px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .ih-left h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .ih-left p { font-size: 13px; color: var(--gray); margin-top: 2px; }
+  .ih-right { text-align: right; }
+  .score-display {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .score-display span { font-size: 18px; color: var(--gray); font-weight: 400; }
+  .score-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-top: 2px; }
+
+  .progress-bar-wrap {
+    background: var(--gray-light);
+    border-radius: 8px;
+    height: 6px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--red), var(--sky));
+    border-radius: 8px;
+    transition: width 0.4s ease;
+  }
+
+  .section-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+    opacity: 0.2;
+  }
+
+  .question-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--gray-light);
+    transition: border-color 0.2s;
+  }
+  .question-card.answered { border-left-color: var(--sky); }
+
+  .q-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .q-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+  .q-probe {
+    font-size: 13px;
+    color: var(--sky);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .rating-label { font-size: 12px; font-weight: 600; color: var(--gray); min-width: 50px; }
+  .rating-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-light);
+    background: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+    color: var(--gray);
+  }
+  .rating-btn:hover { border-color: var(--sky); color: var(--sky); transform: scale(1.1); }
+  .rating-btn.active-1 { background: #FEE2E2; border-color: #EF4444; color: #EF4444; }
+  .rating-btn.active-2 { background: #FEF3C7; border-color: #F59E0B; color: #F59E0B; }
+  .rating-btn.active-3 { background: #FEF9C3; border-color: #EAB308; color: #EAB308; }
+  .rating-btn.active-4 { background: #D1FAE5; border-color: #10B981; color: #10B981; }
+  .rating-btn.active-5 { background: #DCFCE7; border-color: #16A34A; color: #16A34A; }
+  .rating-desc { font-size: 12px; color: var(--gray); font-style: italic; margin-left: 6px; }
+
+  .notes-area {
+    width: 100%;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    resize: vertical;
+    min-height: 70px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .notes-area:focus { border-color: var(--sky); }
+  .notes-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+
+  .action-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    justify-content: flex-end;
+  }
+  .btn-back {
+    padding: 14px 28px;
+    background: white;
+    color: var(--navy);
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .btn-back:hover { border-color: var(--navy); }
+  .btn-summary {
+    padding: 14px 32px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .btn-summary:hover { background: var(--navy-light); transform: translateY(-2px); }
+
+  /* ── SUMMARY VIEW ── */
+  #summary { display: none; max-width: 900px; margin: 0 auto; padding: 30px 20px 60px; }
+
+  .summary-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .summary-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .summary-meta { font-size: 14px; color: var(--gray); }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .score-box {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .score-box .big-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .score-box .big-label { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-top: 4px; }
+  .score-box.total .big-num { color: var(--navy); }
+  .score-box.pct .big-num { color: var(--sky); }
+  .score-box.recommend .big-num { font-size: 24px; }
+
+  .rec-strong { color: var(--green); }
+  .rec-consider { color: var(--gold); }
+  .rec-no { color: var(--red); }
+
+  .verdict-bar {
+    height: 16px;
+    border-radius: 8px;
+    background: var(--gray-light);
+    overflow: hidden;
+    margin: 16px 0 8px;
+  }
+  .verdict-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.8s ease;
+  }
+
+  .q-summary-item {
+    border-bottom: 1px solid var(--gray-light);
+    padding: 16px 0;
+  }
+  .q-summary-item:last-child { border-bottom: none; }
+  .q-sum-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 6px; }
+  .q-sum-text { font-size: 14px; font-weight: 500; color: var(--navy); flex: 1; }
+  .q-sum-score {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 2px 12px;
+    border-radius: 20px;
+    min-width: 54px;
+    text-align: center;
+  }
+  .score-1 { background: #FEE2E2; color: #EF4444; }
+  .score-2 { background: #FEF3C7; color: #F59E0B; }
+  .score-3 { background: #FEF9C3; color: #EAB308; }
+  .score-4 { background: #D1FAE5; color: #10B981; }
+  .score-5 { background: #DCFCE7; color: #16A34A; }
+  .score-0 { background: var(--gray-light); color: var(--gray); }
+  .q-sum-notes { font-size: 13px; color: var(--gray); font-style: italic; }
+
+  .overall-notes-area {
+    width: 100%;
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: var(--navy);
+    min-height: 100px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .overall-notes-area:focus { border-color: var(--sky); }
+
+  .rec-buttons { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+  .rec-btn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 2px solid;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    letter-spacing: 0.5px;
+  }
+  .rec-btn-strong { border-color: var(--green); color: var(--green); background: white; }
+  .rec-btn-strong.active, .rec-btn-strong:hover { background: var(--green); color: white; }
+  .rec-btn-consider { border-color: var(--gold); color: var(--gold); background: white; }
+  .rec-btn-consider.active, .rec-btn-consider:hover { background: var(--gold); color: white; }
+  .rec-btn-no { border-color: var(--red); color: var(--red); background: white; }
+  .rec-btn-no.active, .rec-btn-no:hover { background: var(--red); color: white; }
+
+  .print-btn {
+    padding: 16px 40px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .print-btn:hover { background: #a80d24; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,16,46,0.3); }
+
+  .new-btn {
+    padding: 16px 40px;
+    background: white;
+    color: var(--navy);
+    border: 2px solid var(--gray-light);
+    border-radius: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .new-btn:hover { border-color: var(--navy); }
+
+  .rating-legend {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  @media print {
+    .header::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .action-row, .print-btn, .new-btn, .btn-back, .start-btn, #dashboard, .pos-card { display: none !important; }
+    #summary { display: block !important; }
+    body { background: white; }
+    .summary-card { box-shadow: none; border: 1px solid #ddd; }
+  }
+
+.sample-toggle-bar { border-top: 1px solid var(--gray-light); padding: 0 26px; }
+.sample-toggle-btn { display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; padding: 12px 0; width: 100%; text-align: left; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; color: var(--navy-light); transition: color .18s; }
+.sample-toggle-btn:hover { color: var(--sky); }
+.sample-toggle-btn .t-icon { width: 24px; height: 24px; border-radius: 50%; background: #e8f6fd; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.sample-toggle-btn .t-chev { margin-left: auto; font-size: 11px; color: var(--gray); transition: transform .25s; }
+.sample-toggle-btn.open .t-chev { transform: rotate(180deg); }
+.sample-answers-panel { display: none; background: #FAFBFC; border-top: 1px solid var(--gray-light); }
+.sample-answers-panel.open { display: block; }
+.answers-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.answer-col { padding: 15px 17px; border-right: 1px solid var(--gray-light); }
+.answer-col:last-child { border-right: none; }
+.ans-col-strong { background: #F0FDF4; } .ans-col-avg { background: #FEFCE8; } .ans-col-weak { background: #FFF5F5; }
+.ans-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 7px; }
+.badge-strong { background: #DCFCE7; color: #16A34A; } .badge-avg { background: #FEF9C3; color: #854D0E; } .badge-weak { background: #FEE2E2; color: #DC2626; }
+.ans-num { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 1px; }
+.ans-num.s5 { color: #16A34A; } .ans-num.s3 { color: #EAB308; } .ans-num.s1 { color: #EF4444; }
+.ans-lbl { font-size: 10px; color: var(--gray); margin-bottom: 8px; }
+.ans-text { font-size: 12px; color: var(--navy); line-height: 1.65; }
+.wtl-bar { padding: 10px 17px; background: var(--off-white); border-top: 1px solid var(--gray-light); }
+.wtl-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 3px; }
+.wtl-txt { font-size: 12px; color: var(--navy); line-height: 1.5; }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <img src="data:image/png;base64,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" style="height:64px;width:auto;display:block;" alt="Flynn Pizza Hut">
+    <div class="header-title">
+      Area Director Interview Guide
+      <small>Structured Interview System · 2026</small>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="dash-welcome">
+    <h1>Select a <span>Position</span><br>to Begin Interview</h1>
+    <p>Complete candidate info, choose the role, and start the structured interview.</p>
+  </div>
+
+  <div class="info-row">
+    <div class="info-field">
+      <label>Interviewer (AD Name)</label>
+      <input type="text" id="ad-name" placeholder="Your name">
+    </div>
+    <div class="info-field">
+      <label>Candidate Name</label>
+      <input type="text" id="candidate-name" placeholder="Candidate's full name">
+    </div>
+    <div class="info-field">
+      <label>Interview Date</label>
+      <input type="date" id="interview-date">
+    </div>
+  </div>
+
+  <div class="position-label">Select Position Being Interviewed For</div>
+
+  <div class="position-cards">
+    <div class="pos-card" onclick="selectPosition('sl')" id="card-sl">
+      <div class="pos-icon">🎯</div>
+      <div class="pos-title">Shift Leader</div>
+      <div class="pos-desc">Entry-level management. Responsible for shift operations, team supervision, and guest experience.</div>
+      <div class="pos-badge">Non-Exempt · 8 Questions</div>
+    </div>
+    <div class="pos-card" onclick="selectPosition('am')" id="card-am">
+      <div class="pos-icon">📊</div>
+      <div class="pos-title">Assistant Manager</div>
+      <div class="pos-desc">Partners with RGM on operations, people development, training, and profitability.</div>
+      <div class="pos-badge">Non-Exempt · 10 Questions</div>
+    </div>
+    <div class="pos-card" onclick="selectPosition('rgm')" id="card-rgm">
+      <div class="pos-icon">🏆</div>
+      <div class="pos-title">Restaurant General Manager</div>
+      <div class="pos-desc">Full restaurant accountability — team, operations, financials, culture, and guest excellence.</div>
+      <div class="pos-badge">Exempt · 12 Questions</div>
+    </div>
+  </div>
+
+  <button class="start-btn" id="start-btn" disabled onclick="startInterview()">Select a Position to Begin →</button>
+</div>
+
+<!-- INTERVIEW VIEW -->
+<div id="interview"></div>
+
+<!-- SUMMARY VIEW -->
+<div id="summary"></div>
+
+<script>
+const POSITIONS = {
+  sl: {
+    title: 'Shift Leader',
+    icon: '🎯',
+    sections: [
+      {
+        name: 'Leadership & Accountability',
+        questions: [
+          {
+            text: 'Tell me about a time you had to lead a team through a very busy or stressful shift. What did you do?',
+            probe: 'Probe: How did you prioritize? How did the team respond?',
+          },
+          {
+            text: 'Describe a situation where a team member wasn\'t meeting standards during your shift. How did you handle it?',
+            probe: 'Probe: Did you document it? What was the outcome?',
+          },
+        ]
+      },
+      {
+        name: 'Guest Experience & C.H.A.M.P.S.',
+        questions: [
+          {
+            text: 'Tell me about a time you resolved a difficult customer complaint during a shift. Walk me through exactly what you did.',
+            probe: 'Probe: Did the customer leave satisfied? What would you do differently?',
+          },
+          {
+            text: 'How do you personally make sure C.H.A.M.P.S. standards are maintained throughout your shift?',
+            probe: 'Probe: Can you give a specific example of catching something before it became an issue?',
+          },
+        ]
+      },
+      {
+        name: 'Operations & Standards',
+        questions: [
+          {
+            text: 'Walk me through how you open or close a restaurant. What are the most critical steps you never skip?',
+            probe: 'Probe: How do you handle it when a task isn\'t done by the previous shift?',
+          },
+          {
+            text: 'How do you monitor food safety standards like temperature checks, sanitation, and proper handling during your shift?',
+            probe: 'Probe: Have you ever caught a food safety issue? What did you do?',
+          },
+        ]
+      },
+      {
+        name: 'Training & Development',
+        questions: [
+          {
+            text: 'Describe how you have trained a new team member. What does your approach look like?',
+            probe: 'Probe: How did you know when they were ready to work independently?',
+          },
+        ]
+      },
+      {
+        name: 'Availability & Commitment',
+        questions: [
+          {
+            text: 'This role requires availability for nights, weekends, and holidays. Can you speak to your schedule flexibility and how you manage work-life balance?',
+            probe: 'Probe: Are there any constraints we should know about upfront?',
+          },
+        ]
+      },
+    ]
+  },
+  am: {
+    title: 'Assistant Manager',
+    icon: '📊',
+    sections: [
+      {
+        name: 'Leadership & Team Development',
+        questions: [
+          {
+            text: 'Tell me about a time you coached or developed a team member who was struggling. What was your approach and what was the result?',
+            probe: 'Probe: Did you use any formal tools or just one-on-one coaching? How did it turn out?',
+          },
+          {
+            text: 'Describe your experience with interviewing and selecting new employees. What do you look for in a candidate?',
+            probe: 'Probe: Have you ever made a hire you later regretted? What did you learn?',
+          },
+          {
+            text: 'Tell me about a time you had to address a performance or behavioral issue with an employee. How did you handle it?',
+            probe: 'Probe: Did you involve your GM? How did you document it?',
+          },
+        ]
+      },
+      {
+        name: 'Operations & Financial Acumen',
+        questions: [
+          {
+            text: 'How have you managed or monitored food cost and labor cost in your current or previous role? What levers did you use?',
+            probe: 'Probe: Did you see measurable results? What was your approach to waste reduction?',
+          },
+          {
+            text: 'Walk me through how you approach scheduling. How do you balance labor needs with sales projections?',
+            probe: 'Probe: How do you handle last-minute call-outs?',
+          },
+          {
+            text: 'Tell me about your experience with truck orders, inventory counts, or vendor management.',
+            probe: 'Probe: How did you prevent overordering or stockouts?',
+          },
+        ]
+      },
+      {
+        name: 'Guest Experience',
+        questions: [
+          {
+            text: 'Describe a time when your restaurant\'s guest scores or feedback were not where they needed to be. What did you do about it?',
+            probe: 'Probe: What specific changes did you make? Did scores improve?',
+          },
+          {
+            text: 'How do you create a warm, welcoming environment for both guests and team members?',
+            probe: 'Probe: Give me a specific example of something you did to improve the culture.',
+          },
+        ]
+      },
+      {
+        name: 'Communication & Partnership',
+        questions: [
+          {
+            text: 'Tell me about your communication style with your General Manager. How do you keep them informed and when do you escalate?',
+            probe: 'Probe: Tell me about a time you had a disagreement with your GM. How did you handle it?',
+          },
+          {
+            text: 'What does it mean to you to be a true partner to your RGM? What does that look like day-to-day?',
+            probe: 'Probe: How do you handle it when you have to lead in the GM\'s absence?',
+          },
+        ]
+      },
+    ]
+  },
+  rgm: {
+    title: 'Restaurant General Manager',
+    icon: '🏆',
+    sections: [
+      {
+        name: 'Building A+ Teams',
+        questions: [
+          {
+            text: 'Tell me about the best team you\'ve ever built. How did you recruit, develop, and retain them?',
+            probe: 'Probe: What was your turnover like? How did you recognize and celebrate the team?',
+          },
+          {
+            text: 'Describe how you identify high-potential team members and develop them for promotion. Give me a specific example.',
+            probe: 'Probe: Have you ever promoted someone who didn\'t work out? What did you learn?',
+          },
+          {
+            text: 'Tell me about a time you had to make the tough call to let someone go. How did you approach it?',
+            probe: 'Probe: How did you document the situation? How did the team respond?',
+          },
+        ]
+      },
+      {
+        name: 'Business Acumen & Financial Results',
+        questions: [
+          {
+            text: 'Walk me through how you manage your P&L. What are the KPIs you track most closely and how do you move them?',
+            probe: 'Probe: What is your experience with food cost and labor? What was your best result?',
+          },
+          {
+            text: 'Tell me about a time your restaurant was underperforming financially. What was your turnaround plan and what were the results?',
+            probe: 'Probe: How long did it take? What was the biggest obstacle you overcame?',
+          },
+          {
+            text: 'How do you drive sales growth? Describe a specific initiative you led that increased top-line revenue.',
+            probe: 'Probe: How did you engage the team to execute? What was the measurable outcome?',
+          },
+        ]
+      },
+      {
+        name: 'Operations Excellence & Standards',
+        questions: [
+          {
+            text: 'How do you ensure consistent execution of brand standards across all dayparts and all shifts — including when you\'re not there?',
+            probe: 'Probe: What systems do you put in place? How do you hold the team accountable?',
+          },
+          {
+            text: 'Describe your approach to food safety. Have you ever had a food safety incident? How did you handle it?',
+            probe: 'Probe: How do you keep ServSafe standards top-of-mind for the entire team?',
+          },
+        ]
+      },
+      {
+        name: 'Guest Experience & Culture',
+        questions: [
+          {
+            text: 'How do you personally model and instill a service culture that delivers a Premier Experience for guests every visit?',
+            probe: 'Probe: Give me an example of how you turned a negative guest experience into a loyalty win.',
+          },
+          {
+            text: 'Tell me about a time you turned around a restaurant\'s culture — guest scores, team morale, or reputation in the community.',
+            probe: 'Probe: What were the before/after metrics? How long did it take?',
+          },
+        ]
+      },
+      {
+        name: 'Leadership & Communication',
+        questions: [
+          {
+            text: 'How do you communicate with your Area Director? Walk me through how you keep them informed without being told to.',
+            probe: 'Probe: Tell me about a time you had to deliver bad news to your AD. How did you do it?',
+          },
+          {
+            text: 'Describe your leadership philosophy. How do you balance holding high standards with leading with heart?',
+            probe: 'Probe: Give me an example where you had to be tough but fair. What was the impact?',
+          },
+        ]
+      },
+    ]
+  }
+};
+
+let selectedPos = null;
+let scores = {};
+let notes = {};
+let interviewData = {};
+
+function selectPosition(pos) {
+  selectedPos = pos;
+  document.querySelectorAll('.pos-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('card-' + pos).classList.add('selected');
+  document.getElementById('start-btn').disabled = false;
+  document.getElementById('start-btn').textContent = 'Start ' + POSITIONS[pos].title + ' Interview →';
+}
+
+function startInterview() {
+  if (!selectedPos) return;
+
+  const adName = document.getElementById('ad-name').value || 'Area Director';
+  const candidate = document.getElementById('candidate-name').value || 'Candidate';
+  const date = document.getElementById('interview-date').value || new Date().toISOString().split('T')[0];
+
+  interviewData = { adName, candidate, date, position: selectedPos };
+  scores = {};
+  notes = {};
+
+  const pos = POSITIONS[selectedPos];
+  let allQ = 0;
+  pos.sections.forEach(s => allQ += s.questions.length);
+
+  let html = `
+    <div class="interview-header">
+      <div class="ih-left">
+        <h2>${pos.icon} ${pos.title} Interview</h2>
+        <p>Candidate: <strong>${candidate}</strong> &nbsp;·&nbsp; Interviewer: <strong>${adName}</strong> &nbsp;·&nbsp; ${formatDate(date)}</p>
+      </div>
+      <div class="ih-right">
+        <div class="score-display" id="live-score">0 <span>/ ${allQ * 5}</span></div>
+        <div class="score-label">Live Score</div>
+      </div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-bar" style="width:0%"></div></div>
+    <div class="rating-legend">
+      <span style="font-size:12px;font-weight:600;color:var(--gray);margin-right:4px;">Rating Scale:</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#EF4444"></span> 1 – Poor</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#F59E0B"></span> 2 – Below Expectations</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#EAB308"></span> 3 – Meets Expectations</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#10B981"></span> 4 – Exceeds Expectations</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#16A34A"></span> 5 – Outstanding</span>
+    </div>
+  `;
+
+  let qIndex = 0;
+  pos.sections.forEach((section, si) => {
+    html += `<div class="section-header">${section.name}</div>`;
+    section.questions.forEach((q, qi) => {
+      const id = `q_${si}_${qi}`;
+            const sdata = (typeof SAMPLES !== 'undefined' && SAMPLES[selectedPos]) ? SAMPLES[selectedPos][si+'-'+qi] : null;
+      html += `
+        <div class="question-card" id="card-${id}">
+          <div style="padding:22px 26px 16px">
+            <div class="q-number">Question ${qIndex + 1} of ${allQ}</div>
+            <div class="q-text">${q.text}</div>
+            <div class="q-probe">${q.probe}</div>
+            <div class="rating-row">
+              <div class="rating-label">Score:</div>
+              ${[1,2,3,4,5].map(n => `<button class="rating-btn" id="rb_${id}_${n}" onclick="rate('${id}', ${n})">${n}</button>`).join('')}
+              <span class="rating-desc" id="desc-${id}">&mdash; Not yet rated</span>
+            </div>
+            <div class="notes-label">Interviewer Notes</div>
+            <textarea class="notes-area" id="notes-${id}" placeholder="Record key responses, examples, and behavioral indicators..." oninput="saveNotes('${id}', this.value)"></textarea>
+          </div>
+          ${sdata ? `<div class="sample-toggle-bar">
+            <button class="sample-toggle-btn" id="togbtn-${id}" onclick="toggleSample('${id}')">
+              <span class="t-icon">&#x1F4A1;</span>
+              <span>View Sample Answers</span>
+              <span class="t-chev">&#9660;</span>
+            </button>
+          </div>
+          <div class="sample-answers-panel" id="panel-${id}">
+            <div class="answers-grid">
+              <div class="answer-col ans-col-strong">
+                <div class="ans-badge badge-strong">&#11088; Strong</div>
+                <div class="ans-num s5">5</div><div class="ans-lbl">Outstanding</div>
+                <div class="ans-text">${sdata.strong}</div>
+              </div>
+              <div class="answer-col ans-col-avg">
+                <div class="ans-badge badge-avg">&#9644; Average</div>
+                <div class="ans-num s3">3</div><div class="ans-lbl">Meets Expectations</div>
+                <div class="ans-text">${sdata.avg}</div>
+              </div>
+              <div class="answer-col ans-col-weak">
+                <div class="ans-badge badge-weak">&#9888; Weak</div>
+                <div class="ans-num s1">1</div><div class="ans-lbl">Poor</div>
+                <div class="ans-text">${sdata.weak}</div>
+              </div>
+            </div>
+            <div class="wtl-bar">
+              <div class="wtl-lbl">&#128269; What to Look For</div>
+              <div class="wtl-txt">${sdata.wtl}</div>
+            </div>
+          </div>` : ''}
+        </div>
+      `;
+      qIndex++;
+    });
+  });
+
+  html += `
+    <div class="action-row">
+      <button class="btn-back" onclick="backToDashboard()">← Back to Dashboard</button>
+      <button class="btn-summary" onclick="showSummary()">View Summary & Recommendation →</button>
+    </div>
+  `;
+
+  document.getElementById('interview').innerHTML = html;
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('interview').style.display = 'block';
+  document.getElementById('summary').style.display = 'none';
+  window.scrollTo(0,0);
+}
+
+const ratingDesc = ['','Poor – No relevant example or experience demonstrated','Below Expectations – Limited understanding or weak response','Meets Expectations – Adequate response with some specifics','Exceeds Expectations – Strong behavioral example with clear impact','Outstanding – Exceptional, detailed response with measurable results'];
+
+function rate(id, val) {
+  scores[id] = val;
+  // clear all buttons for this q
+  for (let i = 1; i <= 5; i++) {
+    const btn = document.getElementById(`rb_${id}_${i}`);
+    btn.className = 'rating-btn';
+  }
+  const btn = document.getElementById(`rb_${id}_${val}`);
+  btn.classList.add(`active-${val}`);
+  document.getElementById(`desc-${id}`).textContent = ratingDesc[val];
+  document.getElementById(`card-${id}`).classList.add('answered');
+  updateLiveScore();
+}
+
+function saveNotes(id, val) {
+  notes[id] = val;
+}
+
+function updateLiveScore() {
+  const pos = POSITIONS[selectedPos];
+  let total = 0;
+  let maxQ = 0;
+  pos.sections.forEach((s,si) => s.questions.forEach((q,qi) => {
+    maxQ++;
+    const id = `q_${si}_${qi}`;
+    if (scores[id]) total += scores[id];
+  }));
+  const rated = Object.keys(scores).length;
+  document.getElementById('live-score').innerHTML = `${total} <span>/ ${maxQ * 5}</span>`;
+  const pct = (rated / maxQ) * 100;
+  document.getElementById('prog-bar').style.width = pct + '%';
+}
+
+function backToDashboard() {
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('interview').style.display = 'none';
+  document.getElementById('summary').style.display = 'none';
+  window.scrollTo(0,0);
+}
+
+function showSummary() {
+  const pos = POSITIONS[selectedPos];
+  let total = 0;
+  let maxPossible = 0;
+  let allQs = [];
+
+  pos.sections.forEach((s, si) => {
+    s.questions.forEach((q, qi) => {
+      maxPossible += 5;
+      const id = `q_${si}_${qi}`;
+      const score = scores[id] || 0;
+      total += score;
+      allQs.push({ text: q.text, id, score, note: notes[id] || '', section: s.name });
+    });
+  });
+
+  const pct = Math.round((total / maxPossible) * 100);
+  let recText = '', recClass = '';
+  if (pct >= 75) { recText = 'Strong Recommend'; recClass = 'rec-strong'; }
+  else if (pct >= 55) { recText = 'Consider'; recClass = 'rec-consider'; }
+  else { recText = 'Do Not Recommend'; recClass = 'rec-no'; }
+
+  let fillColor = pct >= 75 ? 'var(--green)' : pct >= 55 ? 'var(--gold)' : 'var(--red)';
+
+  let sectHtml = '';
+  pos.sections.forEach(s => {
+    sectHtml += `<div class="section-header" style="margin-top:20px;">${s.name}</div>`;
+    allQs.filter(q => q.section === s.name).forEach(q => {
+      sectHtml += `
+        <div class="q-summary-item">
+          <div class="q-sum-top">
+            <div class="q-sum-text">${q.text}</div>
+            <div class="q-sum-score score-${q.score}">${q.score || '–'}/5</div>
+          </div>
+          ${q.note ? `<div class="q-sum-notes">📝 ${q.note}</div>` : '<div class="q-sum-notes" style="color:var(--gray-light);">No notes recorded</div>'}
+        </div>
+      `;
+    });
+  });
+
+  const html = `
+    <div class="summary-card">
+      <div class="summary-title">${pos.icon} Interview Summary — ${pos.title}</div>
+      <div class="summary-meta">
+        Candidate: <strong>${interviewData.candidate}</strong> &nbsp;·&nbsp;
+        Interviewer: <strong>${interviewData.adName}</strong> &nbsp;·&nbsp;
+        Date: <strong>${formatDate(interviewData.date)}</strong>
+      </div>
+
+      <div class="score-grid">
+        <div class="score-box total">
+          <div class="big-num">${total}</div>
+          <div class="big-label">Total Score</div>
+          <div style="font-size:12px;color:var(--gray);">out of ${maxPossible} possible</div>
+        </div>
+        <div class="score-box pct">
+          <div class="big-num">${pct}%</div>
+          <div class="big-label">Overall Score</div>
+        </div>
+        <div class="score-box recommend">
+          <div class="big-num ${recClass}">${recText}</div>
+          <div class="big-label">Auto-Recommendation</div>
+        </div>
+      </div>
+
+      <div class="verdict-bar"><div class="verdict-fill" style="width:${pct}%;background:${fillColor}"></div></div>
+      <div style="font-size:12px;color:var(--gray);margin-bottom:8px;">
+        Score threshold: ≥75% = Strong Recommend &nbsp;·&nbsp; 55–74% = Consider &nbsp;·&nbsp; &lt;55% = Do Not Recommend
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-title" style="font-size:22px;margin-bottom:16px;">Question-by-Question Review</div>
+      ${sectHtml}
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-title" style="font-size:22px;margin-bottom:8px;">Overall Recommendation</div>
+      <div style="font-size:14px;color:var(--gray);margin-bottom:14px;">Select your final hiring recommendation:</div>
+      <div class="rec-buttons">
+        <button class="rec-btn rec-btn-strong" onclick="setRec(this, 'strong')">✅ Strong Recommend</button>
+        <button class="rec-btn rec-btn-consider" onclick="setRec(this, 'consider')">⚠️ Consider / Second Interview</button>
+        <button class="rec-btn rec-btn-no" onclick="setRec(this, 'no')">❌ Do Not Recommend</button>
+      </div>
+      <div style="margin-top:24px;">
+        <div class="notes-label" style="margin-bottom:8px;">Overall Notes & Justification</div>
+        <textarea class="overall-notes-area" id="overall-notes" placeholder="Summarize the candidate's key strengths, development areas, and rationale for your recommendation..."></textarea>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:16px;justify-content:flex-end;margin-top:8px;">
+      <button class="new-btn" onclick="backToDashboard()">← New Interview</button>
+      <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+    </div>
+  `;
+
+  document.getElementById('summary').innerHTML = html;
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('interview').style.display = 'none';
+  document.getElementById('summary').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+function setRec(btn, type) {
+  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  const parts = d.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[parseInt(parts[1])-1]} ${parseInt(parts[2])}, ${parts[0]}`;
+}
+
+// Set default date
+document.getElementById('interview-date').value = new Date().toISOString().split('T')[0];
+
+const SAMPLES = {
+  sl: {
+    "0-0": { strong: "Last Super Bowl Sunday &mdash; 3 call-outs and a lobby full of orders. I immediately called a huddle, assigned positions based on who was strongest where, and put myself on expo so I could see the whole operation. I communicated every 15 minutes. We hit our fastest close time of the year and got two positive call-ins that night.", avg: "Yeah, we had a really busy Friday once. I just kept everyone focused and made sure orders were going out. I tried to stay calm. It was tough but we got through it.", weak: "I mean, it's always busy. I just do my job and expect everyone else to do theirs. &#9888; No behavioral example, passive mindset.", wtl: "Specific situation, proactive station assignments, communication to the team, measurable outcome, composure under pressure." },
+    "0-1": { strong: "I had a team member skipping hand-washing steps. I pulled them aside privately, reminded them specifically why it matters for food safety, modeled it myself, and checked back twice that shift. I documented it in my shift notes and told my RGM. After three days of follow-up they were consistently compliant.", avg: "I told them they needed to do better, reminded them of the rules, and watched the rest of the shift. I mentioned it to my manager later.", weak: "I don't really like confrontation, so I usually just lead by example and hope they pick it up. &#9888; Avoids accountability conversations.", wtl: "Private redirection, specific standard referenced, follow-through, documentation/escalation to RGM, willingness to have hard conversations." },
+    "1-0": { strong: "A customer said their delivery order was wrong and cold. I apologized immediately, took full ownership, remade their order fresh, comp'd a dessert, and walked it out personally. They called back to say it was the best recovery they'd ever experienced. I also wrote it up so my RGM could address the driver's packing process.", avg: "I said sorry and offered to remake their food. They seemed okay with it eventually. I try to stay calm and not let it escalate.", weak: "Customers complain a lot and sometimes they're just being difficult. I try to explain our policy. &#9888; Defensive and adversarial toward guests.", wtl: "Immediate apology, ownership (no blame-shifting), concrete recovery action, follow-up with team/RGM, guest left satisfied." },
+    "1-1": { strong: "I do a full walk at the start of every shift &mdash; bathrooms, lobby, line, cooler temps. During one dinner shift I caught that the holding temp on chicken strips was at 129&deg;F &mdash; below the safe threshold. I pulled it before any orders went out, notified my RGM, and had the team retrain on holding equipment that night.", avg: "I walk around and make sure things look good. I tell the team to keep things clean and make sure orders are right before they go out.", weak: "C.H.A.M.P.S. is something we review in training. I mostly just focus on making sure the food goes out fast. &#9888; Speed over standards mentality.", wtl: "Knows all 6 CHAMPS components, proactive not reactive, specific food safety example, communicates to GM." },
+    "2-0": { strong: "For open: safe count, temp logs, product pull/temper list, check equipment, assign stations, review the day's sales projection. I never skip the temp log or cash count. If the previous shift left the walk-in out of compliance, I document it and communicate it to my RGM &mdash; I don't just fix it silently.", avg: "I follow the checklist. I make sure we're stocked and the grill is on. If something's not done I usually just take care of it myself.", weak: "I don't really have a set process &mdash; I just do what needs to be done. Every shift is different. &#9888; No structure, likely to miss compliance steps.", wtl: "Specific steps mentioned (temp logs, cash counts, prep), non-negotiables identified, escalation when previous shift falls short." },
+    "2-1": { strong: "I do temp checks every two hours and log them. One night I found our sanitizer buckets were almost empty &mdash; concentration too low. I refreshed them, retrained the closing team on the correct ratio, and added it to my nightly checklist.", avg: "I make sure people are wearing gloves and washing their hands. I check temps when I remember to. We follow the food safety rules.", weak: "We have a health inspector who comes in and checks everything. I just make sure it looks clean. &#9888; Reactive, relies on external enforcement.", wtl: "Scheduled/routine monitoring, specific examples (temp logs, sanitizer checks), corrective action taken, documentation habits." },
+    "3-0": { strong: "I use the LEAD modules as my framework &mdash; watch, then I show them, then they do it while I observe. I check in at 30 minutes, end of shift, and again the next shift. I knew they were ready when they could run the position without looking to me and started correcting small things on their own.", avg: "I show them what to do and let them practice. I answer questions when they have them. After a few shifts they usually get the hang of it.", weak: "I usually just pair them with someone more experienced. I don't have a lot of time to train during a shift. &#9888; Delegates with no oversight, not using LEAD tools.", wtl: "References LEAD/BCM training tools, structured show-do-review approach, clear certification criteria, follow-up beyond day one." },
+    "4-0": { strong: "I fully understand the commitment and I'm ready for it. I've arranged reliable transportation and childcare planning. I prefer working the busy shifts &mdash; that's where I feel most in my element. The only thing I'd flag is one standing commitment on the second Sunday of each month, and I'd want to plan around that in advance.", avg: "Yeah I can work nights and weekends, that's fine. I have some things on my schedule but I think I can make it work most of the time.", weak: "I prefer days honestly. Weekends are really tough for me. Holidays I'd need to know way in advance. &#9888; Significant conflicts with a non-negotiable requirement.", wtl: "Clear affirmation of availability, reliable transportation confirmed, any disclosed conflicts are specific and manageable." }
+  },
+  am: {
+    "0-0": { strong: "I had a team member great with guests but struggling with speed on the make line. I reviewed the LEAD module with them, set a specific goal: 4-minute average ticket time by end of the week. I checked in daily. By Friday they hit 3:52. Three months later I recommended them for Senior Shift Leader.", avg: "I talked to them about what they could do better and kept an eye on them. Things improved over time. I try to be encouraging.", weak: "If someone's not cutting it after a couple chances I usually just put them on a shift where they can't cause problems. &#9888; Manages around problems.", wtl: "Specific performance gap identified, formal training tools used (LEAD), measurable goal set, follow-up cadence, positive outcome." },
+    "0-1": { strong: "I look for three things: reliability signals (consistent work history), hospitality instinct (eye contact, genuine smile), and coachability (how they respond when I ask about a mistake). I did hire someone once who interviewed great but had three call-outs in two weeks. That taught me to dig deeper into attendance history with behavioral questions.", avg: "I look for someone who seems friendly and says they want to work hard. I go through the standard questions and make my judgment.", weak: "Honestly I usually hire whoever shows up because we're always short. I don't have a lot of time to be picky. &#9888; Desperate hiring mentality, no selection criteria.", wtl: "Clear selection criteria, behavioral questions used, honest reflection on a bad hire with learning extracted." },
+    "0-2": { strong: "I had a team member consistently 10&ndash;15 minutes late. Three private conversations over two weeks with no improvement. I notified my RGM, we agreed on a written warning. I walked the employee through exactly what needed to change and by when, had them sign the write-up, and kept a copy in the file. They improved immediately.", avg: "I talked to them about it. Told my manager. It got a little better. I'm not totally sure if anything was written down.", weak: "I just let it go eventually. I don't want to write people up because then they quit. &#9888; Avoids accountability due to fear of turnover.", wtl: "Private, documented conversations, RGM involvement at right time, written warning process followed, specific improvement expectations set." },
+    "1-0": { strong: "I track food cost weekly by running the waste log against the variance report. I implemented a tempering checklist and we dropped food cost by 1.2 points in 6 weeks. On labor, I watch schedule vs. actual hours daily and cut early if we're below projection.", avg: "I try not to waste food and I don't let people stand around when it's slow. I know food cost is important and I try to keep an eye on it.", weak: "My GM handles the numbers. I just run the shift. I don't really look at the reports. &#9888; No financial ownership.", wtl: "Specific levers named (waste log, tempering, scheduling), measurable result cited, understands operational-to-financial connection." },
+    "1-1": { strong: "I start with prior year's sales data and any LTO impact, then build the schedule to hit our labor target &mdash; usually within 0.3%. I cross-train intentionally so I always have flexibility. For call-outs, I keep a call list ranked by reliability. Our call-out coverage rate went from 60% to 90%.", avg: "I try to schedule based on how busy we usually are. When someone calls out I start calling people and hope someone can come in.", weak: "I don't really do the schedule &mdash; my GM does it. When people call out I just run the shift short. &#9888; No scheduling ownership, accepts being short-staffed.", wtl: "Uses sales data, knows the labor target %, maintains a coverage list, has a systematic call-out response plan." },
+    "1-2": { strong: "I've been placing the Tuesday truck order for 18 months. I compare on-hand inventory against projected sales and par levels &mdash; I never guess. I once noticed cheese usage was 20% higher than projected &mdash; found a team member was over-portioning. We caught it in the waste log, retrained, and fixed it before it hit our next cost report.", avg: "I've done truck orders before. I count what we have and order what I think we need. Sometimes we run low but we manage.", weak: "My GM does the ordering. I've helped count inventory before but I don't know the system well. &#9888; No supply chain ownership.", wtl: "Uses par levels and sales data, tracks variance, connects ordering accuracy to food cost, proactive investigation when something looks off." },
+    "2-0": { strong: "Our speed scores dropped two consecutive months. I pulled ticket time data by daypart and found dinner shifts were averaging 7.5 minutes. I restructured the dinner schedule to add one overlap position, ran a week of line speed drills. In 30 days we were at 5.2 minutes and speed scores jumped 12 points.", avg: "We had some bad reviews once. We had a team meeting and talked about being nicer to customers and going faster. Things seemed to get better.", weak: "Scores go up and down. I can't control how customers feel. Some people are just never happy. &#9888; Externally blames guests, no ownership of metrics.", wtl: "Data-driven diagnosis, specific root cause found, targeted operational fix, measurable improvement tracked." },
+    "2-1": { strong: "I started a shoutout board in the back &mdash; every shift I'd write one team member's name and what they did great. Guest-side, I made it a personal rule to greet every guest within 10 seconds and trained the team on it. Our hospitality scores went from 74 to 89 in one quarter.", avg: "I try to be positive with the team and smile at customers. I think if the team is happy it shows to the guests.", weak: "I'm just here to run operations. Culture stuff is more of the GM's job. &#9888; Disconnects people leadership from operational role.", wtl: "Specific initiative driven personally, team recognition behavior, guest habit modeled and trained, measurable result." },
+    "3-0": { strong: "I send my RGM a shift recap after every closing shift &mdash; what went well, issues, team member concerns. I don't wait for them to ask. On a disagreement: I once thought we should cut a team member sooner than my GM wanted to. I shared my perspective and the documented pattern but deferred to their call.", avg: "I text my GM if something major happens. We get along fine. If we disagree I usually just go along with what they decide.", weak: "Me and my GM don't always see eye to eye. I just do my thing and let them do theirs. &#9888; Silo mentality, not a true partner.", wtl: "Proactive communication habit, structured shift recap, respectful disagreement process, defers within chain of command while voicing perspective professionally." },
+    "3-1": { strong: "Being a real partner means I never let my GM be surprised. I handle what I can handle, and proactively brief them on anything else. When they're off, I run the restaurant exactly the way they'd run it &mdash; same calls, same standards. My goal is for guests and team members to have no idea the GM isn't there.", avg: "I support my GM and help keep things running. When they're not there I just do my best to keep things going.", weak: "When my GM is there they handle everything. I mainly just run shifts. When they're out I keep things stable until they get back. &#9888; No leadership ownership, dependent manager.", wtl: "Proactive communication, leads in GM's absence with same standard, demonstrates earned trust through consistency." }
+  },
+  rgm: {
+    "0-0": { strong: "I inherited a restaurant with 180% turnover. I focused on the Shift Leader bench &mdash; identified two internal candidates, put them through AM LEAD, promoted within six months. I implemented a first-30-days onboarding ritual with check-ins at 7, 14, and 30 days. Within a year: 89% retention, 3 internal promotions, #1 in the district on Team Member Satisfaction.", avg: "I try to hire good people and treat them well. I do team meetings and try to recognize people. Turnover is always an issue in this industry.", weak: "Turnover is just part of this business. You hire, they leave, you hire again. I focus on the ones who stick around. &#9888; Accepts turnover as inevitable.", wtl: "Specific turnover metrics cited, intentional internal development pipeline, onboarding structure, recognition culture built, measurable result." },
+    "0-1": { strong: "I look for three signals: do they solve problems before being told, do they make others better, do they hold standards when I'm not there. I've promoted 4 team members to Shift Leader through the LEAD program in two years. One didn't work out &mdash; struggled with accountability conversations. I learned to give HIPO candidates stretch assignments as a pre-screen.", avg: "I look for people who work hard and show up on time. I've promoted a few people. Sometimes it works, sometimes it doesn't.", weak: "I usually just promote whoever has been there the longest and knows the job. &#9888; Seniority-based promotion, no competency criteria.", wtl: "Specific HIPO criteria articulated, LEAD program referenced, honest reflection on a failed promotion with learning applied." },
+    "0-2": { strong: "I had a Shift Leader who was well-liked but covering up food safety mistakes. Three documented coaching conversations over six weeks with no change. I looped in my AD and HR, followed the progressive discipline process to the letter, terminated with a witness present. Within two weeks, three team members told me individually the culture felt better and more professional.", avg: "I had to let someone go for attendance issues. I talked to them a couple times first, then made the call. The team was okay with it.", weak: "I avoid firing people if I can. It's bad for morale and then I'm even more short-staffed. &#9888; Keeps poor performers for fear of being short-staffed.", wtl: "Progressive discipline followed precisely, documentation at each step, AD/HR looped in, termination with witness and dignity, team culture improved after." },
+    "1-0": { strong: "I review my P&amp;L every Tuesday and track four non-negotiables daily: food cost %, labor %, ticket time, controllable expenses. My best year I hit 28.4% food cost against a 29.1% target and 26.8% labor against a 27.5% target &mdash; a $34K contribution overage. Keys were: tight tempering discipline, aggressive scheduling to sales projection, and a culture where every team member understood their role in the numbers.", avg: "I track food cost and labor. I try to hit my targets. I review the reports when they come in and address what's out of line.", weak: "My district manager goes over the P&amp;L with me on calls. I focus more on the day-to-day. &#9888; No P&amp;L ownership.", wtl: "Specific KPIs named with targets, actual percentages cited from their history, measurable dollar result, can explain operational levers driving each financial outcome." },
+    "1-1": { strong: "I took over a restaurant 3.2 points over on food cost. Full audit in week one &mdash; portioning was off, zero waste tracking. I put every team member through a portioning certification, posted correct weights at every station, implemented a daily waste log. By week 8 we were at target. Biggest obstacle was a Shift Leader who resisted &mdash; I made clear this wasn't optional.", avg: "We had a rough period. I cut some costs and talked to the team about being more careful. It took a few months but we got closer to our targets.", weak: "I just cut hours until the numbers looked better. Sometimes you just have to tighten the belt. &#9888; Cutting labor is the only lever, will harm service.", wtl: "Diagnostic first (audit, root cause), specific operational fix tied to root cause, measurable timeline and result, shows ability to lead through resistance." },
+    "1-2": { strong: "I noticed our dessert attachment rate was only 14% against a brand benchmark of 22%. I ran a 30-day Last Slice challenge &mdash; team members hitting 25%+ attachment got a gift card on Fridays. I posted the scoreboard in the back. Within three weeks we hit 26% attachment &mdash; approximately $1,100 additional revenue per week. I made it permanent by building it into pre-shift huddles.", avg: "I push the team to upsell and run the LTOs as well as possible. We try to be fast so customers come back.", weak: "Sales are driven by traffic which I can't control. I just make sure the experience is good. &#9888; No proactive sales strategy.", wtl: "Data-identified opportunity, team-based incentive designed, scoreboard/visibility created, specific dollar or percentage result, made sustainable." },
+    "2-0": { strong: "My philosophy: if it only happens when I'm there, I haven't built a system. I use three tools &mdash; a non-negotiable shift checklist every Shift Leader signs off on, unannounced walk-throughs on different dayparts (I show up on a close once a month), and a weekly recap from every SL on what was caught and corrected. I hold my SLs accountable for the standard, not just the execution.", avg: "I train everyone on the standards and check in when I can. I trust my shift leaders to maintain things when I'm not there.", weak: "Honestly when I'm not there things slip. That's just how it is. I try to work as many shifts as possible. &#9888; Accepts inconsistency as normal.", wtl: "System-based thinking (checklists, accountability structures), unannounced visits, develops SLs to own the standard, celebrates catching vs. correcting culture." },
+    "2-1": { strong: "Food safety is non-negotiable &mdash; zero tolerance for shortcuts. I do a monthly food safety blitz where I test every team member on one topic. I had one incident where a team member served a pizza held too long. No illness resulted, but I treated it as a crisis-level learning moment &mdash; full team debrief, retrained on holding times, updated the checklist, scheduled my AM for ServSafe certification.", avg: "We follow all the food safety rules. I make sure temps are checked and things are labeled. We haven't had any real issues.", weak: "We passed our health inspection so I think we're in good shape. I remind people to wash their hands. &#9888; Inspection-reactive mindset, no proactive food safety culture.", wtl: "Zero-tolerance language, proactive monthly/routine training, honest disclosure of an incident (good sign), full corrective response, ServSafe awareness." },
+    "3-0": { strong: "I greet every guest who walks in &mdash; because my team watches what I do. I had a guest who'd been given the wrong order twice in a row. I came out from the back, introduced myself as the GM, personally made her order in front of her, gave her a month of free pizza on a gift card. She's now one of our highest-frequency guests. I told that story at our next team meeting as the standard we hold ourselves to.", avg: "I try to set a good example for the team. When complaints happen I make them right and move on. I think most guests appreciate when you're sincere.", weak: "I've trained the team on hospitality. I can't be everywhere at once &mdash; it's really on them to deliver the experience. &#9888; Deflects responsibility for culture.", wtl: "Models behavior personally (not just trains it), specific recovery story with lasting loyalty outcome, used the story to teach the team." },
+    "3-1": { strong: "I took over a location last in the district on guest scores (61%) with 3 Yelp complaints in one month. My first move was a full team meeting sharing the scores transparently &mdash; no sugarcoating. We built our fix together. In 90 days we were at 78%. In 6 months we hit 84% &mdash; #2 in the district. The key was making data visible every week and celebrating every improvement publicly.", avg: "I've dealt with morale issues before. I try to keep things positive and make sure people feel appreciated. Things usually improve over time.", weak: "I haven't really had to turn around a restaurant. The places I've worked have been pretty stable. &#9888; No evidence of leading through adversity.", wtl: "Transparent data sharing with team, co-created solution (not top-down mandate), specific before/after metrics with timeline, weekly visibility of progress." },
+    "4-0": { strong: "My rule: my AD should never hear bad news from someone other than me, and should never have to ask for an update on something I already know about. I send a weekly one-page summary &mdash; wins, risks, what I need. I had an injury incident on shift. I called my AD within 30 minutes, before they could hear it elsewhere, with facts, the initial steps I'd taken, and what I needed from them.", avg: "I call my AD when there's an issue or when they reach out. I don't want to bother them with every little thing.", weak: "I talk to my AD on our scheduled check-ins. I handle things at the store level and only escalate if it's really serious. &#9888; Reactive and gatekeeping.", wtl: "Proactive communication habit (structured weekly updates), never-surprises-the-AD philosophy, calls bad news immediately, comes with facts AND initial actions." },
+    "4-1": { strong: "My philosophy: high standards are the most caring thing you can give someone. If I let standards slide because I like someone, I'm hurting them. I had a Shift Leader I genuinely cared about who was consistently late to opens. I told him directly: 'You're too talented for this to be the reason you don't make AM.' He fixed it. He made AM six months later.", avg: "I try to be fair and consistent. I hold everyone to the same rules but I also try to understand what's going on in people's lives.", weak: "I'm a pretty easygoing manager. I believe in giving people a lot of chances. I'd rather be liked than feared. &#9888; Confuses permissiveness with heart.", wtl: "Can articulate why standards ARE the caring thing, knows their people individually, gives hard feedback early and directly, specific example with a growth outcome." }
+  }
+};
+
+function toggleSample(id) {
+  const panel = document.getElementById('panel-' + id);
+  const btn = document.getElementById('togbtn-' + id);
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.querySelector('.t-icon').textContent = isOpen ? String.fromCodePoint(0x1F4A1) : String.fromCodePoint(0x274C);
+  btn.querySelector('.t-chev').textContent = isOpen ? '\u25BC' : '\u25B2';
+}
+
+</script>
+</body>
+</html>
