@@ -303,11 +303,11 @@
   .question-card {
     background: white;
     border-radius: 14px;
-    padding: 24px 28px;
     margin-bottom: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     border-left: 4px solid var(--gray-light);
     transition: border-color 0.2s;
+    overflow: hidden;
   }
   .question-card.answered { border-left-color: var(--sky); }
 
@@ -635,6 +635,111 @@
     font-weight: 700; cursor: pointer; transition: all 0.2s; letter-spacing: 1px; text-transform: uppercase;
   }
   .email-btn:hover { background: #007db5; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,155,222,0.3); }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+
+    /* Header */
+    .header::before { width: 55%; }
+    .header-inner { padding: 14px 18px; gap: 10px; }
+    .logo-area img { height: 44px !important; }
+    .header-title { font-size: 14px; letter-spacing: 0.5px; }
+    .header-title small { font-size: 10px; letter-spacing: 1px; }
+
+    /* Dashboard */
+    #dashboard { margin: 24px auto; padding: 0 14px; }
+    .dash-welcome h1 { font-size: 30px; }
+    .dash-welcome p { font-size: 14px; }
+    .dash-welcome { margin-bottom: 28px; }
+
+    /* Info fields — stack to 1 column */
+    .info-row { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+
+    /* Position cards — 2 columns on tablet, 1 on small phone */
+    .position-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; margin-bottom: 24px; }
+    .pos-card { padding: 18px 14px; }
+    .pos-icon { font-size: 28px; margin-bottom: 6px; }
+    .pos-title { font-size: 16px; }
+    .pos-desc { font-size: 11px; }
+    .pos-badge { font-size: 9px; }
+
+    /* Start button */
+    .start-btn { font-size: 17px; padding: 16px; }
+
+    /* Interview view */
+    #interview { padding: 16px 14px 50px; }
+    .interview-header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 18px 18px; }
+    .ih-right { text-align: left; width: 100%; display: flex; align-items: baseline; gap: 10px; }
+    .score-display { font-size: 30px; }
+    .ih-left h2 { font-size: 20px; }
+    .ih-left p { font-size: 12px; }
+
+    /* Rating legend — wrap tightly */
+    .rating-legend { gap: 6px; font-size: 11px; }
+    .legend-dot { width: 8px; height: 8px; }
+
+    /* Question cards */
+    .question-card { padding: 16px 16px; border-radius: 12px; }
+    .q-text { font-size: 15px; }
+    .q-probe { font-size: 12px; }
+
+    /* Rating buttons — larger tap targets */
+    .rating-btn { width: 46px; height: 46px; font-size: 17px; }
+    .rating-row { gap: 6px; }
+    .rating-desc { display: none; } /* hide text desc on mobile to save space */
+
+    /* Notes */
+    .notes-area { font-size: 16px; min-height: 80px; } /* 16px prevents iOS zoom */
+
+    /* Sample answers — stack to 1 column */
+    .answers-grid { grid-template-columns: 1fr !important; }
+    .answer-col { border-right: none !important; border-bottom: 1px solid var(--gray-light); }
+    .answer-col:last-child { border-bottom: none; }
+    .wtl-bar { padding: 12px 16px; }
+
+    /* Action row — stack buttons */
+    .action-row { flex-direction: column; gap: 10px; }
+    .btn-back, .btn-summary { width: 100%; text-align: center; padding: 16px; font-size: 17px; }
+
+    /* Summary view */
+    #summary { padding: 16px 14px 50px; }
+    .summary-card { padding: 20px 18px; border-radius: 12px; }
+    .summary-title { font-size: 22px; }
+    .summary-meta { font-size: 13px; }
+
+    /* Score grid — single column */
+    .score-grid { grid-template-columns: 1fr; gap: 10px; margin: 16px 0; }
+    .score-box .big-num { font-size: 36px; }
+
+    /* Rec buttons — stack */
+    .rec-buttons { flex-direction: column; gap: 10px; }
+    .rec-btn { width: 100%; text-align: center; padding: 14px; font-size: 16px; }
+
+    /* Final action buttons — stack */
+    .action-buttons-final,
+    div[style*="display:flex"][style*="gap:16px"][style*="justify-content:flex-end"] {
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+    .print-btn, .email-btn, .new-btn {
+      width: 100%; padding: 16px 20px; font-size: 17px; text-align: center;
+    }
+
+    /* Modal */
+    .modal-box { padding: 28px 20px; border-radius: 14px; }
+    .modal-title { font-size: 22px; }
+    .modal-actions { flex-direction: column; gap: 10px; }
+    .modal-send, .modal-cancel { width: 100%; padding: 14px; font-size: 17px; }
+  }
+
+  @media (max-width: 480px) {
+    /* Phone — tighten further */
+    .position-cards { grid-template-columns: 1fr !important; }
+    .header-title small { display: none; }
+    .header::before { display: none; }
+    .q-text { font-size: 14px; }
+    .summary-card { padding: 16px 14px; }
+  }
 
   @media print {
     .header::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -1299,7 +1404,7 @@ function showSummary() {
       </div>
     </div>
 
-    <div style="display:flex;gap:16px;justify-content:flex-end;margin-top:8px;">
+    <div class="action-buttons-final" style="display:flex;gap:16px;justify-content:flex-end;margin-top:8px;">
       <button class="new-btn" onclick="backToDashboard()">← New Interview</button>
       <button class="email-btn" onclick="openEmailModal()">📧 Email Summary</button>
       <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
